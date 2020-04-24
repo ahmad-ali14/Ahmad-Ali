@@ -28,3 +28,40 @@ body{
   font-family: Roboto, sans-serif;
   border-radius: 3%;
 }
+
+#carousel{
+    margin: 0 auto;
+    padding: 0 auto;
+    text-align: center;
+    display: block;
+}
+
+#carImg{
+    margin: 0 auto;
+    padding: 0 auto;
+    width: 80%;
+    max-width: 1200px;
+    height: 500px;
+}
+
+.cbtn{
+    background-color: black;
+    color: white;
+    font-size: larger;
+    padding: 1.5%;
+}
+
+#pbtn{
+  
+    
+}
+#nbtn{
+}
+
+#controls{
+     display: block;
+    margin: 0 auto;
+    padding: 0 auto;
+    text-align: center;
+    cursor: pointer;
+}
