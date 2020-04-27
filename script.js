@@ -104,4 +104,57 @@ sbtn.addEventListener('click', ()=>{
 });
 
 
+window.addEventListener('keydown', (e)=>{
+
+let key = e.key;
+console.log(key);
+
+if(key == 'ArrowRight'){
+
+    if(stop == true){ stop = false; }
+    // window.i= window.i + 1;
+    if(window.i == lastSlide+1) {  
+        window.i = 1; 
+        clearTimeout(carTime);
+        return carousel(); 
+    }
+   
+    clearTimeout(carTime);
+     carousel();
+
+}
+
+if(key == 'ArrowLeft'){
+
+    if(stop == true){ stop = false; }
+    // console.log('stio changed to   ', stop);
+    window.i= window.i - 2;
+    // console.log('before if' , window.i )
+    if(window.i < 1) {  
+        window.i = lastSlide; 
+        // console.log('inside if' , window.i )
+        clearTimeout(carTime);
+        return carousel();
+     }
+    //window.i= window.i - 2;
+    // console.log('out if' , window.i )
+    clearTimeout(carTime);
+     carousel();
+
+}
+
+
+if(key == " "){
+
+    stop = !stop;
+   clearTimeout(carTime);
+   carousel();
+
+}
+
+})
+
+
+
+
 window.onload = carousel;
