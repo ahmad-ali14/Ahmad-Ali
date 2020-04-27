@@ -1,9 +1,15 @@
 window.i = 1;
 let stop = false;
+var slideTime = document.getElementById('slidesTime');
+var slideNum = document.getElementById('slidesNum');
+
+console.log(slideTime);
+console.log(slideNum);
+
 var carTime;
 var firstSlide = 1;
-var lastSlide = 4;
-var slidertime = 5000;
+var lastSlide = slideNum.value;
+var slidertime = slideTime.value * 1000;
 
 function carousel() {
     //change pause/start button
@@ -28,7 +34,7 @@ function carousel() {
 
             if (file2) { carImg.setAttribute('src', '/imgs/' + window.i + '.jpeg'); }
             if (file3) { carImg.setAttribute('src', '/imgs/' + window.i + '.jpg'); }
-
+           
         }
 
         //increase to the next slide
@@ -145,6 +151,18 @@ function nextSlide() {
     carousel();
 }
 
+slideNum.addEventListener('change', () =>{
+    clearTimeout(carTime);
+    lastSlide = slideNum.value;
+    slidertime = slideTime.value * 1000;
+    carousel();
+})
+slideTime.addEventListener('change', () =>{
+    clearTimeout(carTime);
+    lastSlide = slideNum.value;
+    slidertime = slideTime.value * 1000;
+    carousel();
+})
 
 
 window.onload = carousel;
