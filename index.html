@@ -16,10 +16,17 @@
         </ul>
       </header>
     <div class="about">
-      <p>I'm Ahmad Ali, I used to live in a small diperate village, where I was the shelter to everybody facing a technichal problem. This has given my the love of computers and programming. </p>
+      <p>I'm Ahmad Ali, I've been learning on my own for a while now, and I think it's time to the next step - with your help -. </p>
       
       <p>
-        When it's the time to my university, things did not go well and I did not study computer science. Today I want to live my old dream again.
+       some notes about the slider below:
+       <ul>
+         <li>I've put 15 pictures in the `./imgs` folder.</li>
+         <li>You can change the number of slides you want to be shown `1-15`.</li>
+         <li>any slide number < 0 will stop the slider. </li>
+         <li>you can also change the timer for each slide from the controls below.</li>
+         <li>please use positive number for timer, timers is in seconds. </li>
+       </ul>
       </p>
     </div>
 
@@ -29,13 +36,13 @@
        
     </div>
     <div id="controls">
-        <span id="pbtn" class="cbtn" style="margin-right: 3px;" > << </span> 
-        <span class="cbtn">Timer:</span>
-        <span class="cbtn"><input type="number" id="slidesTime" value="4" /></span>
-        <span id="sbtn" class="cbtn" >  </span>
-        <span class="cbtn">Number of Slides:</span>
-        <span class="cbtn"><input type="number" id="slidesNum" value="4" /></span>
-        <span id="nbtn" class="cbtn" > >> </span>
+        <span id="pbtn" title="previous slide" class="cbtn" style="margin-right: 3px;" > << </span> 
+        <span class="cbtn" title="Time in seconds for each slide" >Timer:</span>
+        <span class="cbtn" title="Time in seconds for each slide"><input type="number" id="slidesTime" value="4" /></span>
+        <span id="sbtn" class="cbtn" title="stop / resume" >  </span>
+        <span title="Number of slides to be shown" class="cbtn">Number of Slides:</span>
+        <span title="Number of slides to be shown" class="cbtn"><input type="number" id="slidesNum" value="4" /></span>
+        <span id="nbtn" title="next slide" class="cbtn" > >> </span>
     </div>
 
     <script type="text/javascript" src="script.js"></script>
