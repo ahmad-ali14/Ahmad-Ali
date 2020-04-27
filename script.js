@@ -1,15 +1,20 @@
 window.i = 1;
 let stop = false;
 var carTime;
+var firstSlide=1;
+var lastSlide = 4;
+var slidertime = 5000;
 
 function carousel() {
+    const sbtn = document.getElementById('sbtn');
+    !stop ? sbtn.innerText ="||" : sbtn.innerText="|>";
 
     const carImg = document.getElementById('carImg');
-    // if (window.i < 0) { window.i = 4; }
+    if (window.i <= 0) { window.i = lastSlide; }
+    if (window.i > lastSlide) { window.i = 1; }
 
-
-    if ( !stop &&  window.i < 5) {
-        let i = window.i;
+    if ( !stop &&  window.i < lastSlide +1) {
+        // let i = window.i;
         let file1 = doesFileExist(`/imgs/${window.i}.png`);
 
 
@@ -29,13 +34,14 @@ function carousel() {
 
 
 
-      
+       
         
         window.i = window.i + 1;
         console.log('i++', i);
-        carTime =  setTimeout(carousel, 3000);
+        carTime =  setTimeout(carousel, slidertime);
     }
-    if (window.i == 5) { window.i = 1; }
+
+   
 
 }
 
@@ -63,16 +69,17 @@ const sbtn = document.getElementById('sbtn');
 
 pbtn.addEventListener('click', ()=>{
     if(stop == true){ stop = false; }
-    console.log('stio changed to   ', stop);
+    // console.log('stio changed to   ', stop);
     window.i= window.i - 2;
-    console.log('before if' , window.i )
+    // console.log('before if' , window.i )
     if(window.i < 1) {  
-        window.i = 4; 
-        console.log('inside if' , window.i )
+        window.i = lastSlide; 
+        // console.log('inside if' , window.i )
         clearTimeout(carTime);
         return carousel();
      }
     //window.i= window.i - 2;
+    // console.log('out if' , window.i )
     clearTimeout(carTime);
      carousel();
 });
@@ -80,7 +87,7 @@ pbtn.addEventListener('click', ()=>{
 nbtn.addEventListener('click', ()=>{
     if(stop == true){ stop = false; }
     // window.i= window.i + 1;
-    if(window.i == 5) {  
+    if(window.i == lastSlide+1) {  
         window.i = 1; 
         clearTimeout(carTime);
         return carousel(); 
