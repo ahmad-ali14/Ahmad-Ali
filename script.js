@@ -9,8 +9,10 @@ function carousel() {
     //change pause/start button
     const sbtn = document.getElementById('sbtn');
     !stop ? sbtn.innerText = "||" : sbtn.innerText = "|>";
-    
+
     const carImg = document.getElementById('carImg');
+
+    //if you are on the last slide start from the begining, if you are on the first slide amd you are going backword jsut go back to the last slide.
     if (window.i <= 0) { window.i = lastSlide; }
     if (window.i > lastSlide) { window.i = 1; }
 
@@ -18,12 +20,7 @@ function carousel() {
         /**
          * adapt slider if the image is jpg, jpeg or png
          */
-        // let i = window.i;
         let file1 = doesFileExist(`/imgs/${window.i}.png`);
-
-        // console.log("file 1", file1)
-        // console.log("file 2", file2)
-
         if (file1) { carImg.setAttribute('src', '/imgs/' + window.i + '.png'); }
         else {
             let file2 = doesFileExist(`/imgs/${window.i}.jpeg`);
@@ -34,17 +31,20 @@ function carousel() {
 
         }
 
+        //increase to the next slide
         window.i = window.i + 1;
-        console.log('i++', i);
+
+        //set slider timer
         carTime = setTimeout(carousel, slidertime);
     }
-
-
-
 }
 
 
-
+/**
+ * 
+ * @param string  urlToFile  - the path to the slider image
+ * @return boolean if there is afile with this name or not.
+ */
 function doesFileExist(urlToFile) {
     var xhr = new XMLHttpRequest();
     xhr.open('HEAD', urlToFile, false);
@@ -58,7 +58,9 @@ function doesFileExist(urlToFile) {
 }
 
 
-
+/**
+ * buttons functionality
+ */
 
 const pbtn = document.getElementById('pbtn');
 const nbtn = document.getElementById('nbtn');
@@ -78,6 +80,10 @@ sbtn.addEventListener('click', () => {
 });
 
 
+/**
+ * keys functionality
+ */
+
 window.addEventListener('keydown', (e) => {
     let key = e.key;
     if (key == 'ArrowRight') {
@@ -95,6 +101,10 @@ window.addEventListener('keydown', (e) => {
 })
 
 
+/**
+ * stoping the slider  
+ */
+
 function stopSlider() {
     stop = !stop;
     clearTimeout(carTime);
@@ -102,23 +112,26 @@ function stopSlider() {
 
 }
 
+/**
+ * moving backword to the previous slide
+ */
+
 function perviousSlide() {
     if (stop == true) { stop = false; }
-    // console.log('stio changed to   ', stop);
     window.i = window.i - 2;
-    // console.log('before if' , window.i )
     if (window.i < 1) {
         window.i = lastSlide;
-        // console.log('inside if' , window.i )
         clearTimeout(carTime);
         return carousel();
     }
-    //window.i= window.i - 2;
-    // console.log('out if' , window.i )
     clearTimeout(carTime);
     carousel();
 }
 
+
+/**
+ * moving forward to the next slide
+ */
 function nextSlide() {
     if (stop == true) { stop = false; }
     // window.i= window.i + 1;
@@ -131,6 +144,7 @@ function nextSlide() {
     clearTimeout(carTime);
     carousel();
 }
+
 
 
 window.onload = carousel;
