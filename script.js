@@ -8,8 +8,8 @@ console.log(slideNum);
 
 var carTime;
 var firstSlide = 1;
-var lastSlide = slideNum.value;
-var slidertime = slideTime.value * 1000;
+ window.lastSlide = 4;
+var slidertime = 3000;
 
 function carousel() {
     //change pause/start button
@@ -19,10 +19,10 @@ function carousel() {
     const carImg = document.getElementById('carImg');
 
     //if you are on the last slide start from the begining, if you are on the first slide amd you are going backword jsut go back to the last slide.
-    if (window.i <= 0) { window.i = lastSlide; }
-    if (window.i > lastSlide) { window.i = 1; }
+    if (window.i <= 0) { window.i = window.lastSlide; }
+    if (window.i > window.lastSlide) { window.i = 1; }
 
-    if (!stop && window.i < lastSlide + 1) {
+    if ( window.i < window.lastSlide + 1) {
         /**
          * adapt slider if the image is jpg, jpeg or png
          */
@@ -36,12 +36,14 @@ function carousel() {
             if (file3) { carImg.setAttribute('src', '/imgs/' + window.i + '.jpg'); }
            
         }
-
-        //increase to the next slide
         window.i = window.i + 1;
 
+      if( !stop ){
+        //increase to the next slide
+       
         //set slider timer
         carTime = setTimeout(carousel, slidertime);
+      }
     }
 }
 
@@ -74,11 +76,15 @@ const sbtn = document.getElementById('sbtn');
 
 
 pbtn.addEventListener('click', () => {
-    nextSlide();
+    perviousSlide();
+    console.log('prevpressed', window.i)
+
 });
 
 nbtn.addEventListener('click', () => {
-   perviousSlide();
+    nextSlide();
+    console.log('nextpressd', window.i)
+
 });
 
 sbtn.addEventListener('click', () => {
@@ -123,13 +129,14 @@ function stopSlider() {
  */
 
 function perviousSlide() {
-    if (stop == true) { stop = false; }
-    window.i = window.i - 2;
-    if (window.i < 1) {
-        window.i = lastSlide;
-        clearTimeout(carTime);
-        return carousel();
-    }
+   // if (stop == true) { stop = false; }
+    window.i = window.i -2;
+    // if (window.i < 1) {
+    //     window.i = window.lastSlide;
+    //     clearTimeout(carTime);
+    //     return carousel();
+    // }
+    console.log('inside prev', window.i)
     clearTimeout(carTime);
     carousel();
 }
@@ -139,28 +146,30 @@ function perviousSlide() {
  * moving forward to the next slide
  */
 function nextSlide() {
-    if (stop == true) { stop = false; }
-    // window.i= window.i + 1;
-    if (window.i == lastSlide + 1) {
-        window.i = 1;
-        clearTimeout(carTime);
-        return carousel();
-    }
+   // if (stop == true) { stop = false; }
+    window.i = window.i;
+    // if (window.i > window.lastSlide ) {
+    //     window.i = 1;
+    //     clearTimeout(carTime);
+    //     return carousel();
+    // }
 
     clearTimeout(carTime);
     carousel();
 }
 
 slideNum.addEventListener('change', () =>{
-    clearTimeout(carTime);
-    lastSlide = slideNum.value;
+    window.lastSlide = parseInt(slideNum.value);
+    console.log(window.lastSlide);
     slidertime = slideTime.value * 1000;
+    clearTimeout(carTime);
     carousel();
 })
 slideTime.addEventListener('change', () =>{
-    clearTimeout(carTime);
-    lastSlide = slideNum.value;
+    window.lastSlide = parseInt(slideNum.value);
+    console.log(window.lastSlide);
     slidertime = slideTime.value * 1000;
+    clearTimeout(carTime);
     carousel();
 })
 
