@@ -14,7 +14,7 @@ var slidertime = 3000;
 function carousel() {
     //change pause/start button
     const sbtn = document.getElementById('sbtn');
-    !stop ? sbtn.innerText = "||" : sbtn.innerText = "|>";
+    !stop ? sbtn.innerText = " || " : sbtn.innerText = " |> ";
 
     const carImg = document.getElementById('carImg');
 

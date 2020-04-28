@@ -50,8 +50,15 @@ body{
     color: white;
     font-size: larger;
     padding: 1.5%;
+    cursor: pointer;
 }
 
+.cspan{
+  background-color: black;
+  color: white;
+  font-size: larger;
+  padding: 1.5%;
+}
 #pbtn{
   
     
@@ -64,7 +71,6 @@ body{
     margin: 0 auto;
     padding: 0 auto;
     text-align: center;
-    cursor: pointer;
 }
 
 
@@ -76,4 +82,10 @@ body{
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Opera and Firefox */
+}
+
+.cbtn:hover{
+  background-color: #000044;
+  cursor: pointer;
+
 }
